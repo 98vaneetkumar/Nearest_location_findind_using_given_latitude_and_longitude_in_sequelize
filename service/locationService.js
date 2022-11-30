@@ -14,8 +14,9 @@ exports.getlocation = (data) => {
 
 // Here static data used
 exports.getlocationallMethod1 = (lo,lt) => {
-  console.log(lo);
+  console.log("In service",lo);
   console.log(lt);
+  console.log(typeof(lo))
   
   return new Promise((resolve, reject) => {
     let where = {};
@@ -25,13 +26,20 @@ let order=[Sequelize.literal("distance asc")]
       .findAll({ 
         attributes: [
           "location_Id","name","address",
-          [
-            sequelize.literal(`(
-              select (3959*acos(cos(radians(37))*cos(radians(lat))*cos(radians(lng)-radians(-122))+
-              sin(radians(37))* sin(radians(lat)))) 
-            )`),
-            'distance'
-        ] 
+        //   [
+        //     sequelize.literal(`(
+        //       select (3959*acos(cos(radians(37))*cos(radians(lat))*cos(radians(lng)-radians(-122))+
+        //       sin(radians(37))* sin(radians(lat)))) 
+        //     )`),
+        //     'distance'
+        // ] 
+        [
+          sequelize.literal(`(
+            select (3959*acos(cos(radians("lo"))*cos(radians(lat))*cos(radians(lng)-radians("lt"))+
+            sin(radians("lo"))* sin(radians(lat)))) 
+          )`),
+          'distance'
+      ] 
         ],
         order:order
       })

@@ -34,8 +34,9 @@ module.exports = {
   getsMethod1: async (data,req,res) => {
     let latitude=req.body.lat|| 37;
     let longitude=req.body.lng||-122;
-    console.log(latitude)
+    console.log("In controller",latitude)
     console.log(longitude)
+    console.log(typeof(latitude))
     const user = await Service.locationService.getlocationallMethod1(latitude,longitude);
     if (user) {
       return {
