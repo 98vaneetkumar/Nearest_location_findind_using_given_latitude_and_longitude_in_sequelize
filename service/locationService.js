@@ -59,7 +59,7 @@ exports.getlocationallMethod2 = (latitude, longitude) => {
   return new Promise((resolve, reject) => {
     console.log("this is latitude", latitude);
     console.log("this is longi", longitude);
-let order=[Sequelize.literal("distance asc")]
+    let order=[Sequelize.literal("distance asc")]
 
     let where = {};
     console.log(where, "cccccc");
@@ -71,8 +71,8 @@ let order=[Sequelize.literal("distance asc")]
           [
             sequelize.literal(`(
               SELECT SQRT(
-                POW(69.1 * (lat - 37), 2) +
-                POW(69.1 * (-122- lng) * COS(lat / 57.3), 2))
+                POW(69.1 * (lat - "latitude"), 2) +
+                POW(69.1 * ("longitude"- lng) * COS(lat / 57.3), 2))
             )`),
             'distance'
         ] 
